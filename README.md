@@ -155,6 +155,19 @@ curl http://localhost:8080/health
 
 ---
 
+## ⚡ CI/CD Pipeline
+
+This project uses GitHub Actions to automate Docker image builds and pushes.
+
+Workflow:
+- Trigger: Push to `main` branch
+- Build Docker image automatically
+- Push image to Docker Hub
+
+This simulates a real-world DevOps CI/CD pipeline.
+
+---
+
 ## 👨‍💻 Author
 Hamiz Siddiqui
 
