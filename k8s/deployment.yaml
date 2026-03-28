@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-microservice
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello-microservice
+  template:
+    metadata:
+      labels:
+        app: hello-microservice
+    spec:
+      containers:
+        - name: hello-microservice
+          image: hamizs/hello-microservice:2.0
+          ports:
+            - containerPort: 8000
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: "100m"
+            limits:
+              cpu: "500m"
